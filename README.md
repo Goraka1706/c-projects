@@ -3,5 +3,5 @@
 This is a projects based repository i made to help me in learning C programming.
 
 
-##### Currently available project/program: #####
+##### Project/program in this repository: #####
 - SImple Calculator
