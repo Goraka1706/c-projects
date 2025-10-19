@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
 
 
 void game() {
@@ -18,10 +19,11 @@ void game() {
 	if(player_Choice > computer || player_Choice == 1 && computer == 3) {
 		printf("\n=== You Win! ===\n");
 	} else if (computer == player_Choice) {
-		printf("### DRAW ###");
+		printf("\n### DRAW ###\n");
 	} else {
 		printf("\n--- Computer Win ---\n");
 	}
+	
 }
 
 
@@ -33,24 +35,21 @@ int main() {
 	scanf("%c", &answer);
 		
 	if(answer == 'Y' || answer == 'y') {
-		while(1) {
+		do{
 			game();
 
 			char rematch;
 			printf("Rematch? Y/n\n>>");
 			scanf("%c", &rematch);
-
-			do {
+			while(rematch == 'Y' || rematch == 'y') {
 				game();
-			} while (rematch != 'n' || rematch != 'N');
-		}
-
-
-
+			}
+		} while (answer != 'n' || answer != 'N');
 	} else {
-		printf("Thankyou for playing!");
+		printf("Thank you for playing!");
 		exit(0);
 	}
+
 
 	return 0;
 }
