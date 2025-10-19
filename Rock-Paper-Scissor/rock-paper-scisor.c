@@ -35,16 +35,19 @@ int main() {
 	scanf("%c", &answer);
 		
 	if(answer == 'Y' || answer == 'y') {
-		do{
+		int i = 0;
+		for (int i = 0; i < 1; ++i)
+		{
 			game();
 
-			char rematch;
-			printf("Rematch? Y/n\n>>");
-			scanf("%c", &rematch);
-			while(rematch == 'Y' || rematch == 'y') {
-				game();
+			while(1) {
+			    printf("Rematch? Y/n\n>>");
+			    scanf("%c", &answer);
+			    if (answer != 'n' || answer != 'N') {
+			    	game();
+			    }
 			}
-		} while (answer != 'n' || answer != 'N');
+		}
 	} else {
 		printf("Thank you for playing!");
 		exit(0);
