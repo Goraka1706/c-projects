@@ -17,6 +17,8 @@ void game() {
 
 	if(player_Choice > computer || player_Choice == 1 && computer == 3) {
 		printf("\n=== You Win! ===\n");
+	} else if (computer == player_Choice) {
+		printf("### DRAW ###");
 	} else {
 		printf("\n--- Computer Win ---\n");
 	}
@@ -27,19 +29,21 @@ void game() {
 int main() {
 	char answer;
 	printf("===== Welcome to Rock-Paper-Scissor Game! =====\n");
-	printf("Want to Play? Y/n\n");
+	printf("Want to Play? Y/n\n>>");
 	scanf("%c", &answer);
 		
 	if(answer == 'Y' || answer == 'y') {
-		game();
-		
-		char rematch;
-		printf("Rematch? Y/n");
-		scanf("%c", &rematch);
-		int i = 0;
-		/*
-		 i don't know what code to write after this.
-		 */
+		while(1) {
+			game();
+
+			char rematch;
+			printf("Rematch? Y/n\n>>");
+			scanf("%c", &rematch);
+
+			do {
+				game();
+			} while (rematch != 'n' || rematch != 'N');
+		}
 
 
 
