@@ -13,14 +13,14 @@ void game() {
 	scanf(" %d", &player_Choice);
 	printf("Computer is Choosing.....\n");
 	computer = rand() % (max - min + 1) + min;
-	printf("Compter choose %d", computer);
+	
 
 	if(
 		(player_Choice == 1 && computer == 2) ||
 		(player_Choice == 2 && computer == 3) ||
 		(player_Choice == 3 && computer == 1)) {
 		printf("\n=== You Win! ===\n");
-	} else if (computer == player_Choice) {
+	} else if (player_Choice == computer) {
 		printf("\n### DRAW ###\n");
 	} else {
 		printf("\n--- Computer Win ---\n");
@@ -39,15 +39,16 @@ int main() {
 	printf("Want to Play? Y/n\n>>");
 	scanf(" %c", &answer);
 		
-	//if(answer == 'Y' || answer == 'y') {
-	do{
-		game ();
-			
-		printf("Rematch? Y/n\n>>");
-		scanf(" %c", &answer);
+	if(answer == 'Y' || answer == 'y') {
+		do{
+			game ();
+				
+			printf("Rematch? Y/n\n>>");
+			scanf(" %c", &answer);
 
-	} while(answer != 'n' || answer != 'N');
-	//}
+		} while(answer == 'Y' || answer == 'y');
+	}
+	
 	printf("Thank you for playing!");
 
 
