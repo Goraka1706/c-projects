@@ -11,9 +11,8 @@ void game() {
 
 	printf("Chose your optiion! \n1. Rock 2.Paper 3.Scissor\n>>");
 	scanf(" %d", &player_Choice);
-	printf("Computer is Choosing.....\n");
-	computer = rand() % (max - min + 1) + min;
-	
+	printf("Computer is Choosing.....");
+	computer = rand() % (max - min + 1) + min;	
 
 	if(
 		(player_Choice == 1 && computer == 2) ||
@@ -31,6 +30,8 @@ void game() {
 
 
 int main() {
+	start:
+
 	char answer;
 
 	srand(time(0));
@@ -45,8 +46,8 @@ int main() {
 				
 			printf("Rematch? Y/n\n>>");
 			scanf(" %c", &answer);
-
 		} while(answer == 'Y' || answer == 'y');
+		goto start;
 	}
 	
 	printf("Thank you for playing!");
