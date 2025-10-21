@@ -30,10 +30,9 @@ void game() {
 
 
 int main() {
-	start:
-
 	char answer;
-
+	start:
+	
 	srand(time(0));
 
 	printf("===== Welcome to Rock-Paper-Scissor Game! =====\n");
