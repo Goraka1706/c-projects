@@ -17,6 +17,7 @@ int main() {
 	{
 		//printf("Total Price: %lf.2 \n", price);
 		itemCount = 1;
+		
 		for (int i = 0; i < itemCount; ++i)
 		{
 			printf("\nEnter item count: ");
