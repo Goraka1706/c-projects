@@ -2,7 +2,7 @@
 
 int main() {
 	char item, answer, exit;
-	int itemCount, totalItem;
+	int itemCount;
 	double price, total;
 	price = 0.0;
 	printf("=== Cashier Management ===\n");
@@ -10,14 +10,15 @@ int main() {
 	printf("Enter program?\n");
 	printf("Press \'Enter/Return\' to enter program\nPress any key to exit\n");
 	printf("=Enter=   =Exit=\n");
-	//scanf(" %c", &answer);
 	answer = getchar();
 
 	if (answer == '\n')
 	{
-		//printf("Total Price: %lf.2 \n", price);
+		printf("Total Price: %lf \n", price);
+
 		itemCount = 1;
 		
+		start:
 		for (int i = 0; i < itemCount; ++i)
 		{
 			printf("\nEnter item count: ");
@@ -27,16 +28,23 @@ int main() {
 			printf("\nPrice: ");
 			scanf("%lf", &price);
 
-			totalItem += itemCount;
+			
 			total += price;
 
-			printf("\nTotal item: %d \nTotal price: %lf", totalItem, total);
-
+			printf("\nTotal price: %lf", total);
+			printf("\n=Done(Enter)=  =Add(other key)=\n>>");
+			
+			exit = getchar();
+			
+			if (exit != '\n')
+			{
+				goto start;
+			}
 		}
-		//printf("Success\n");
-	} else {
-		printf("Exit Success\n");
+		
 	}
+
+	printf("Exit Success\n");
 	
 
 	return 0;
