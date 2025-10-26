@@ -16,13 +16,12 @@ int main() {
 	{
 		printf("Total Price: %lf \n", price);
 
-		itemCount = 1;
+		printf("\nEnter item count: ");
+		scanf(" %d", &itemCount);
 		
 		start:
 		for (int i = 0; i < itemCount; ++i)
 		{
-			printf("\nEnter item count: ");
-			scanf(" %d", &itemCount);
 			printf("\nItem name: ");
 			scanf(" %s", &item);
 			printf("\nPrice: ");
