@@ -1,10 +1,23 @@
 #include <stdio.h>
 
+
+void calculate() {
+	int item, total;
+	double price, totalPrice;
+
+	printf("How many items?: ");
+	scanf(" %d", &item);
+
+	printf("Enter price: ");
+	scanf(" %lf", &price);
+
+	totalPrice += price;
+	total += item;
+}
+
 int main() {
-	char item, answer, exit;
-	int itemCount;
-	double price, total;
-	price = 0.0;
+	char answer, exit;
+	float firstPrice;
 	printf("=== Cashier Management ===\n");
 
 	printf("Enter program?\n");
@@ -14,32 +27,22 @@ int main() {
 
 	if (answer == '\n')
 	{
-		printf("Total Price: %lf \n", price);
+		printf("Total Price: %lf \n", firstPrice);
 
-		printf("\nEnter item count: ");
-		scanf(" %d", &itemCount);
-		
-		start:
-		for (int i = 0; i < itemCount; ++i)
+		do
 		{
-			printf("\nItem name: ");
-			scanf(" %s", &item);
-			printf("\nPrice: ");
-			scanf("%lf", &price);
+			start:
+			calculate();
 
-			
-			total += price;
-
-			printf("\nTotal price: %lf", total);
-			printf("\n=Done(Enter)=  =Add(other key)=\n>>");
-			
+			printf("=Done(Enter)= =Exit(other key)= ");
 			exit = getchar();
-			
+
 			if (exit != '\n')
 			{
 				goto start;
 			}
-		}
+
+		} while (answer == '\n');
 		
 	}
 
