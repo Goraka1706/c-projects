@@ -13,6 +13,9 @@ void calculate() {
 
 	totalPrice += price;
 	total += item;
+
+	printf("\nTotal Price: %lf", totalPrice);
+	printf("\nTotal Item: %d", total);
 }
 
 int main() {
@@ -29,23 +32,25 @@ int main() {
 	{
 		printf("Total Price: %lf \n", firstPrice);
 
-		do
+		int count = 1;
+		for (int i = 0; i < count; ++i)
 		{
 			start:
 			calculate();
 
-			printf("=Done(Enter)= =Exit(other key)= ");
-			exit = getchar();
+			printf("\n=Done(Enter)=   =Add(other key)=\n>>");
+			scanf(" %c", &exit);
 
-			if (exit != '\n')
+			if (exit == 'Y' || exit == 'y')
 			{
+				goto end;
+			} else {
 				goto start;
 			}
-
-		} while (answer == '\n');
-		
+		}
 	}
 
+	end:
 	printf("Exit Success\n");
 	
 
