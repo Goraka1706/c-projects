@@ -1,20 +1,21 @@
 #include <stdio.h>
 
 
-void calculate() {
-	int item, total;
-	double price, totalPrice;
+int item, total;
+double price, totalPrice, itemPrice;
 
+void calculate() {
 	printf("How many items?: ");
 	scanf(" %d", &item);
 
 	printf("Enter price: ");
-	scanf(" %lf", &price);
+	scanf(" %lf", &itemPrice);
 
+	price = itemPrice * item;
 	totalPrice += price;
 	total += item;
 
-	printf("\nTotal Price: %lf", totalPrice);
+	printf("\nTotal Price: %.2lf", totalPrice);
 	printf("\nTotal Item: %d", total);
 }
 
@@ -30,7 +31,7 @@ int main() {
 
 	if (answer == '\n')
 	{
-		printf("Total Price: %lf \n", firstPrice);
+		printf("Total Price: %.1lf \n", firstPrice);
 
 		int count = 1;
 		for (int i = 0; i < count; ++i)
@@ -43,16 +44,14 @@ int main() {
 
 			if (exit == 'Y' || exit == 'y')
 			{
-				goto end;
+				printf("\nTotal item: %d\nTotal price: %.2lf", total, totalPrice);
+				break;
 			} else {
 				goto start;
 			}
 		}
 	}
 
-	end:
-	printf("Exit Success\n");
-	
 
 	return 0;
 }
