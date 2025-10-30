@@ -32,7 +32,6 @@ void game() {
 int main() {
 	char answer;
 	int repeat = 1;
-	//start:
 	
 	while(repeat) {
 	    srand(time(0));
@@ -48,7 +47,6 @@ int main() {
 				printf("Rematch? Y/n\n>>");
 				scanf(" %c", &answer);
 			} while(answer == 'Y' || answer == 'y');
-		//goto start;
 		} else {
 			printf("Thank you for playing!");
 			break;
