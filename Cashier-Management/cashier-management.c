@@ -8,7 +8,7 @@ void calculate() {
 	printf("How many items?: ");
 	scanf(" %d", &item);
 
-	printf("Enter price: ");
+	printf("Enter price per item: ");
 	scanf(" %lf", &itemPrice);
 
 	price = itemPrice * item;
@@ -17,6 +17,10 @@ void calculate() {
 
 	printf("\nTotal Price: %.2lf", totalPrice);
 	printf("\nTotal Item: %d", total);
+}
+
+void clear_buffer() {
+	while(getchar() != '\n');
 }
 
 int main() {
@@ -33,25 +37,22 @@ int main() {
 	{
 		printf("Total Price: %.1lf \n", firstPrice);
 
-		int count = 1;
-		for (int i = 0; i < count; ++i)
-		{
-			start:
+		do{
+			//start:
 			calculate();
 
 			printf("\n=Done(Enter)=   =Add(other key)=\n>>");
-			scanf(" %c", &exit);
+			//scanf(" %c", &exit);
+			clear_buffer();
 
-			if (exit == 'Y' || exit == 'y')
+			answer = getchar();
+			if(answer == '\n')
 			{
 				printf("\nTotal item: %d\nTotal price: %.2lf", total, totalPrice);
 				break;
-			} else {
-				goto start;
-			}
-		}
+			}	
+		} while(answer != '\n');	
 	}
-
 
 	return 0;
 }
