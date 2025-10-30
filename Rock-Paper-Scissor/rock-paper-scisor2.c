@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-
+//This rock-paper-scissor game code use loop flag to return to main menu, instead of goto statement. The other line are the same as version 1
 void game() {
 	int player_Choice;
 	int computer;
