@@ -38,11 +38,10 @@ int main() {
 		printf("Total Price: %.1lf \n", firstPrice);
 
 		do{
-			//start:
 			calculate();
 
 			printf("\n=Done(Enter)=   =Add(other key)=\n>>");
-			//scanf(" %c", &exit);
+			
 			clear_buffer();
 
 			answer = getchar();
