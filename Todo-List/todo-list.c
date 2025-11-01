@@ -6,7 +6,7 @@
 
 
 void add() {
-	int add_list;
+	char add_list[STRING_SIZE];
 	printf("\nEnter text:\n>>");
 	scanf("%s", &add_list);
 
@@ -14,10 +14,12 @@ void add() {
 	if (list == NULL)
 	{
 		fopen("TodoList.txt", "w");
+	} else {
+		fopen("TodoList.txt", "a");
 	}
-	fprintf(add_list, "%s\n", TodoList.txt);
+	fprintf(add_list, "%s\n", "TodoList.txt");
 
-	fclose(TodoList.txt);
+	fclose("TodoList.txt");
 }
 
 void del() {
@@ -26,14 +28,15 @@ void del() {
 
 
 int main() {
-	int answer, exit;
+	int answer;
 
 	printf("===== Todo List =====\n");
 	printf("=== Presss number to select ===\n1. Add\n2. Delete\n3. Exit\n>>");
 	scanf("%s", &answer);
 
 	if(answer == 1) {
-		/* code */
+		add();
+
 	}
 	else if(answer == 2) {
 		/* code */
