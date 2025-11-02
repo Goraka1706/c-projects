@@ -4,21 +4,21 @@
 #define STRING_SIZE 1024
 
 
-
 void add() {
 	char add_list[STRING_SIZE];
-	printf("\nEnter text:\n>>");
-	scanf("%s", &add_list);
-
-	FILE *list = fopen("TodoList.txt", "r");
+	
+	FILE *list = fopen("TodoList.txt", "a");
+		
 	if (list == NULL)
 	{
 		fopen("TodoList.txt", "w");
-	} else {
-		fopen("TodoList.txt", "a");
 	}
-	fprintf(list, "%s\n", add_list);
 
+	printf("\nEnter text:\n>>");
+	fgets(add_list, sizeof(STRING_SIZE), stdin);
+	
+	fprintf(list, "%s\n", add_list);
+	
 	fclose(list);
 }
 
