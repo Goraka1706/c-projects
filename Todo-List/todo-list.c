@@ -17,9 +17,9 @@ void add() {
 	} else {
 		fopen("TodoList.txt", "a");
 	}
-	fprintf(add_list, "%s\n", "TodoList.txt");
+	fprintf(list, "%s\n", add_list);
 
-	fclose("TodoList.txt");
+	fclose(list);
 }
 
 void del() {
@@ -32,14 +32,14 @@ int main() {
 
 	printf("===== Todo List =====\n");
 	printf("=== Presss number to select ===\n1. Add\n2. Delete\n3. Exit\n>>");
-	scanf("%s", &answer);
+	scanf("%d", &answer);
 
 	if(answer == 1) {
 		add();
 
 	}
 	else if(answer == 2) {
-		/* code */
+		del();
 	}
 	else if (answer == 3)
 	{
