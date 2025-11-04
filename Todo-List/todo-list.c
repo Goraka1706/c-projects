@@ -6,19 +6,19 @@
 
 void add() {
 	char add_list[STRING_SIZE];
+
+	printf("\nEnter text:\n>>");
+	fgets(add_list, STRING_SIZE, stdin);
 	
 	FILE *list = fopen("TodoList.txt", "a");
 		
 	if (list == NULL)
 	{
-		fopen("TodoList.txt", "w");
+		list = fopen("TodoList.txt", "w");
 	}
 
-	printf("\nEnter text:\n>>");
-	fgets(add_list, sizeof(STRING_SIZE), stdin);
-	
 	fprintf(list, "%s\n", add_list);
-	
+	printf("List added: \n%s", add_list);
 	fclose(list);
 }
 
@@ -33,6 +33,9 @@ int main() {
 	printf("===== Todo List =====\n");
 	printf("=== Presss number to select ===\n1. Add\n2. Delete\n3. Exit\n>>");
 	scanf("%d", &answer);
+
+	int c;
+	while((c = getchar()) != '\n' && c != EOF) {}
 
 	if(answer == 1) {
 		add();
