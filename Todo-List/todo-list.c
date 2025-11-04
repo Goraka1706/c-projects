@@ -27,6 +27,12 @@ void del() {
 }
 
 
+void buffer_clear() {
+	int c;
+	while((c = getchar()) != '\n' && c != EOF) {};
+}
+
+
 int main() {
 	int answer;
 
@@ -34,8 +40,7 @@ int main() {
 	printf("=== Presss number to select ===\n1. Add\n2. Delete\n3. Exit\n>>");
 	scanf("%d", &answer);
 
-	int c;
-	while((c = getchar()) != '\n' && c != EOF) {}
+	buffer_clear();
 
 	if(answer == 1) {
 		add();
