@@ -5,7 +5,7 @@
 
 
 void add() {
-	char add_list[STRING_SIZE];
+	char add_list[STRING_SIZE], added[STRING_SIZE];
 
 	printf("\nEnter text:\n>>");
 	fgets(add_list, STRING_SIZE, stdin);
@@ -17,9 +17,17 @@ void add() {
 		list = fopen("TodoList.txt", "w");
 	}
 
-	fprintf(list, "%s\n", add_list);
+	fprintf(list, "%s", add_list);
 	printf("List added: \n%s", add_list);
+
 	fclose(list);
+
+	FILE *show_list = fopen("TodoList.txt", "r");
+
+	fgets(added, sizeof(added), list);
+	printf(" %s", added);
+
+	fclose(show_list);
 }
 
 void del() {
