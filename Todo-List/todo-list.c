@@ -4,6 +4,24 @@
 #define STRING_SIZE 1024
 
 
+void showList() {
+	char todoList[STRING_SIZE];
+
+	FILE *listed = fopen("TodoList.txt","r");
+
+	if (listed == NULL)
+	{
+		printf("No list yet. Add some.\n");
+		return;
+	}
+
+	fgets(todoList, STRING_SIZE, listed);
+	printf("%s\n", todoList);
+
+	fclose(listed);
+}
+
+
 void add() {
 	char add_list[STRING_SIZE], added[STRING_SIZE];
 
@@ -24,7 +42,7 @@ void add() {
 
 	FILE *show_list = fopen("TodoList.txt", "r");
 
-	fgets(added, sizeof(added), list);
+	fgets(added, sizeof(added), show_list);
 	printf(" %s", added);
 
 	fclose(show_list);
@@ -43,8 +61,11 @@ void buffer_clear() {
 
 int main() {
 	int answer;
-
+	
 	printf("===== Todo List =====\n");
+
+	showList();
+
 	printf("=== Presss number to select ===\n1. Add\n2. Delete\n3. Exit\n>>");
 	scanf("%d", &answer);
 
