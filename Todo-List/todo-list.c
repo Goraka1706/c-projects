@@ -33,10 +33,11 @@ void add() {
 	if (list == NULL)
 	{
 		list = fopen("TodoList.txt", "w");
+		return;
 	}
 
 	fprintf(list, "%s", add_list);
-	printf("List added: \n%s", add_list);
+	printf("List added:\n");
 
 	fclose(list);
 
@@ -49,7 +50,25 @@ void add() {
 }
 
 void del() {
-	int delete_list;
+	char delete_list[STRING_SIZE];
+	int del;
+
+	FILE *delFile = fopen("TodoList.txt", "r");
+
+	if (delFile == NULL)
+	{
+		printf("No list yet. Add some.");
+		return;
+	}
+
+	fgets(delete_list, sizeof(delete_list), delFile);
+	printf("%s\n", delete_list);
+
+	printf("Select number to delete\n>>");
+	scanf(" %d", &del);
+	
+	
+	fclose(delFile);
 }
 
 
