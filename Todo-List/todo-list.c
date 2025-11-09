@@ -51,24 +51,28 @@ void add() {
 
 void del() {
 	char delete_list[STRING_SIZE];
-	int del;
+	int del, lineToDelete, currentLine = 1;
 
 	FILE *delFile = fopen("TodoList.txt", "r");
-
-	if (delFile == NULL)
+	FILE *temp = fopen("temp.txt", "w");
+	if (delFile == NULL || temp == NULL)
 	{
 		printf("No list yet. Add some.");
 		return;
 	}
 
-	fgets(delete_list, sizeof(delete_list), delFile);
-	printf("%s\n", delete_list);
-
-	printf("Select number to delete\n>>");
-	scanf(" %d", &del);
+	while(fgets(delete_list, sizeof(delete_list), delFile)) {
+		if (currentLine <= lineToDelete)
+		{
+			fputs(delete_list, temp);
+		}
+		currentLine++;
+	}
 	
 	
 	fclose(delFile);
+	fclose(temp);
+	rename("temp.txt", "TodoList.txt");
 }
 
 
@@ -92,7 +96,6 @@ int main() {
 
 	if(answer == 1) {
 		add();
-
 	}
 	else if(answer == 2) {
 		del();
