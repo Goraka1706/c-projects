@@ -4,6 +4,12 @@
 #define STRING_SIZE 1024
 
 
+void buffer_clear() {
+	int c;
+	while((c = getchar()) != '\n' && c != EOF) {};
+}
+
+
 void showList() {
 	char todoList[STRING_SIZE];
 
@@ -51,7 +57,13 @@ void add() {
 
 void del() {
 	char delete_list[STRING_SIZE];
-	int del, lineToDelete, currentLine = 1;
+	int lineToDelete, currentLine = 1;
+
+	printf("Enter number ofline to delete\n>>");
+	scanf("%d", &lineToDelete);
+
+	buffer_clear();
+
 
 	FILE *delFile = fopen("TodoList.txt", "r");
 	FILE *temp = fopen("temp.txt", "w");
@@ -62,7 +74,7 @@ void del() {
 	}
 
 	while(fgets(delete_list, sizeof(delete_list), delFile)) {
-		if (currentLine <= lineToDelete)
+		if (currentLine != lineToDelete)
 		{
 			fputs(delete_list, temp);
 		}
@@ -73,12 +85,6 @@ void del() {
 	fclose(delFile);
 	fclose(temp);
 	rename("temp.txt", "TodoList.txt");
-}
-
-
-void buffer_clear() {
-	int c;
-	while((c = getchar()) != '\n' && c != EOF) {};
 }
 
 
@@ -93,6 +99,7 @@ int main() {
 	scanf("%d", &answer);
 
 	buffer_clear();
+
 
 	if(answer == 1) {
 		add();
