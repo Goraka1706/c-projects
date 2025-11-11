@@ -4,13 +4,15 @@
 #define STRING_SIZE 1024
 
 
-void buffer_clear() {
+void buffer_clear() 
+{
 	int c;
 	while((c = getchar()) != '\n' && c != EOF) {};
 }
 
 
-void showList() {
+void showList() 
+{
 	char todoList[STRING_SIZE];
 
 	FILE *listed = fopen("TodoList.txt","r");
@@ -21,14 +23,17 @@ void showList() {
 		return;
 	}
 
-	fgets(todoList, STRING_SIZE, listed);
-	printf("%s\n", todoList);
+	while(fgets(todoList, sizeof(todoList), listed))
+	{
+		printf("%s", todoList);
+	}
 
 	fclose(listed);
 }
 
 
-void add() {
+void add() 
+{
 	char add_list[STRING_SIZE], added[STRING_SIZE];
 
 	printf("\nEnter text:\n>>");
@@ -49,8 +54,9 @@ void add() {
 
 	FILE *show_list = fopen("TodoList.txt", "r");
 
-	fgets(added, sizeof(added), show_list);
-	printf(" %s", added);
+	while(fgets(added, sizeof(added), show_list)) {
+		printf(" %s", added);
+	}
 
 	fclose(show_list);
 }
@@ -69,7 +75,7 @@ void del() {
 	FILE *temp = fopen("temp.txt", "w");
 	if (delFile == NULL || temp == NULL)
 	{
-		printf("No list yet. Add some.");
+		printf("Nothing to delete. Add some.");
 		return;
 	}
 
@@ -110,7 +116,7 @@ int main() {
 	else if (answer == 3)
 	{
 		printf("\nExit the program...");
-		exit(1);
+		exit(0);
 	}
 	else{
 		printf("\nWrong option! Please select the right one!\n");
