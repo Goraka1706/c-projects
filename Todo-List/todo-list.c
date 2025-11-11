@@ -86,7 +86,7 @@ void del() {
 		}
 		currentLine++;
 	}
-	
+
 	
 	fclose(delFile);
 	fclose(temp);
