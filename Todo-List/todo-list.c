@@ -95,31 +95,33 @@ void del() {
 
 
 int main() {
-	int answer;
-	
-	printf("===== Todo List =====\n");
+	int answer, repeat = 1;
 
-	showList();
+	while(repeat) {
+	    printf("\n===== Todo List =====\n");
 
-	printf("=== Presss number to select ===\n1. Add\n2. Delete\n3. Exit\n>>");
-	scanf("%d", &answer);
+		showList();
 
-	buffer_clear();
+		printf("=== Presss number to select ===\n1. Add\n2. Delete\n3. Exit\n>>");
+		scanf("%d", &answer);
+
+		buffer_clear();
 
 
-	if(answer == 1) {
-		add();
-	}
-	else if(answer == 2) {
-		del();
-	}
-	else if (answer == 3)
-	{
-		printf("\nExit the program...");
-		exit(0);
-	}
-	else{
-		printf("\nWrong option! Please select the right one!\n");
+		if(answer == 1) {
+			add();
+		}
+		else if(answer == 2) {
+			del();
+		}
+		else if (answer == 3)
+		{
+			printf("\nExit the program...");
+			exit(0);
+		}
+		else{
+			printf("\nWrong option! Please select the right one!\n\n");
+		}
 	}
 
 	return 0;
