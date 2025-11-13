@@ -23,6 +23,18 @@ void showList()
 		return;
 	}
 
+	fseek(listed, 0, SEEK_END);
+	long size = ftell(listed);
+
+	if (size == 0)
+	{
+		printf("No list yet. Add some\n");
+		fclose(listed);
+		return;
+	}
+
+	fseek(listed, 0, SEEK_SET);
+
 	while(fgets(todoList, sizeof(todoList), listed))
 	{
 		printf("%s", todoList);
