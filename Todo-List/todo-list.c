@@ -46,7 +46,7 @@ void showList()
 
 void add() 
 {
-	char add_list[STRING_SIZE], added[STRING_SIZE];
+	char add_list[STRING_SIZE];
 
 	printf("\nEnter text:\n>>");
 	fgets(add_list, STRING_SIZE, stdin);
@@ -108,7 +108,7 @@ int main() {
 
 		showList();
 
-		printf("=== Presss number to select ===\n1. Add\n2. Delete\n3. Exit\n>>");
+		printf("=== Choose number to select ===\n1. Add\n2. Delete\n3. Exit\n>>");
 		scanf("%d", &answer);
 
 		buffer_clear();
