@@ -60,17 +60,10 @@ void add()
 	}
 
 	fprintf(list, "%s", add_list);
-	printf("List added:\n");
+	printf("List added succesfully.\n");
 
 	fclose(list);
 
-	FILE *show_list = fopen("TodoList.txt", "r");
-
-	while(fgets(added, sizeof(added), show_list)) {
-		printf(" %s", added);
-	}
-
-	fclose(show_list);
 }
 
 void del() {
@@ -99,6 +92,7 @@ void del() {
 		currentLine++;
 	}
 
+	printf("You have been deleted line %d\n", lineToDelete);
 	
 	fclose(delFile);
 	fclose(temp);
