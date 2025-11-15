@@ -66,7 +66,8 @@ void add()
 
 }
 
-void del() {
+void del()
+{
 	char delete_list[STRING_SIZE];
 	int lineToDelete, currentLine = 1;
 
@@ -84,7 +85,8 @@ void del() {
 		return;
 	}
 
-	while(fgets(delete_list, sizeof(delete_list), delFile)) {
+	while(fgets(delete_list, sizeof(delete_list), delFile))
+	{
 		if (currentLine != lineToDelete)
 		{
 			fputs(delete_list, temp);
@@ -100,10 +102,12 @@ void del() {
 }
 
 
-int main() {
+int main()
+{
 	int answer, repeat = 1;
 
-	while(repeat) {
+	while(repeat) 
+	{
 	    printf("\n===== Todo List =====\n");
 
 		showList();
@@ -125,7 +129,8 @@ int main() {
 			printf("\nExit the program...");
 			exit(0);
 		}
-		else{
+		else
+		{
 			printf("\nWrong option! Please select the right one!\n\n");
 		}
 	}
