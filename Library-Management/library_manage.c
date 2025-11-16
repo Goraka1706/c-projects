@@ -11,7 +11,21 @@ typedef struct {
 } Book;
 
 
+void buffer_clear() 
+{
+	int c;
+	while((c = getchar()) != '\n' && c != EOF) {};
+}
+
+
+void add()
+{
+	
+}
+
+
 int main()
 {
+
 	return 0;
 }
