@@ -55,15 +55,15 @@ void add()
 }
 
 
-void deleteBook()
-{
-	
-}
-
-
 void searchBook()
 {
 
+}
+
+
+void deleteBook()
+{
+	
 }
 
 
@@ -86,11 +86,11 @@ int main()
 		}
 		else if (answer == 2)
 		{
-			deleteBook();
+			searchBook();
 		}
 		else if (answer == 3)
 		{
-			searchBook();
+			deleteBook();
 		}
 		else if (answer == 4)
 		{
