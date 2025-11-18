@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define SIZE 1024
 
@@ -32,21 +33,31 @@ void add()
 
 	printf("Enter book name:\n>>");
 	fgets(book.name, sizeof(book.name), stdin);
+	book.name[strcspn(book.name, "\n\r")] = '\0';
 
-	printf("Enter book name:\n>>");
+	printf("Enter book author:\n>>");
 	fgets(book.author, sizeof(book.author), stdin);
+	book.author[strcspn(book.name, "\n\r")] = '\0';
 
-	printf("Enter book name:\n>>");
+	printf("Enter book date:\n>>");
 	fgets(book.date, sizeof(book.date), stdin);
+	book.date[strcspn(book.name, "\n\r")] = '\0';
 
-	printf("Enter book name:\n>>");
+	printf("Enter book price:\n>>");
 	fgets(book.price, sizeof(book.price), stdin);
+	book.price[strcspn(book.name, "\n\r")] = '\0';
 
-	fprintf(addBook, "{\n\"Name\": \"%s\",\n\"Author\": \"%s\",\n\"Date\": \"%s\",\n\"Price\": \"%s\"}", book.name, book.author, book.date, book.price);
+	fprintf(addBook, "{\n\"Name\": \"%s\", \n\"Author\": \"%s\", \n\"Date\": \"%s\", \n\"Price\": \"%s\" \n}\n", book.name, book.author, book.date, book.price);
 
 	printf("Book successfully added\n");
 
 	fclose(addBook);
+}
+
+
+void deleteBook()
+{
+	
 }
 
 
@@ -56,40 +67,40 @@ void searchBook()
 }
 
 
-void deleteBook()
-{
-	
-}
-
 int main()
 {
-	int answer;
+	int answer, repeat = 1;
 
-	printf("\n===== Library Management =====\n");
-	printf("=== Please select the number to choose action ===\n");
-	printf("1. Add Book\n2. Search Book\n 3. Delete Book\n4. Exit\n>>");
-	scanf("%d", &answer);
+	while(repeat) {
+	    
+		printf("\n===== Library Management =====\n");
+		printf("=== Please select the number to choose action ===\n");
+		printf("1. Add Book\n2. Search Book\n3. Delete Book\n4. Exit\n>>");
+		scanf("%d", &answer);
 
-	buffer_clear();
+		buffer_clear();
 
-	switch(answer)
-	{
-	case 1:
-		addBook();
-		break;
-	case 2:
-		searchBook();
-		break;
-	case 3:
-		deleteBook();
-		break;
-	case 4:
-		printf("Exit program.....\n");
-		exit(0);
-		break;
-	default:
-		printf("\nWrong choose. Please select the right one.\n\n", );
-		break;
+		if (answer == 1)
+		{
+			add();
+		}
+		else if (answer == 2)
+		{
+			deleteBook();
+		}
+		else if (answer == 3)
+		{
+			searchBook();
+		}
+		else if (answer == 4)
+		{
+			printf("Exit program....\n");
+			exit(0);
+		}
+		else
+		{
+			printf("You choosing the wrong option! Please choose the correct one.\n");
+		}
 	}
 
 	return 0;
