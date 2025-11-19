@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <cjson/cjson.h>
+
 
 #define SIZE 1024
 
