@@ -3,7 +3,6 @@
 #include <string.h>
 #include <cjson/cJSON.h>
 
-
 #define SIZE 1024
 
 typedef struct {
@@ -31,15 +30,15 @@ void add()
 
 	printf("Enter book author:\n>>");
 	fgets(book.author, sizeof(book.author), stdin);
-	book.author[strcspn(book.name, "\n\r")] = '\0';
+	book.author[strcspn(book.author, "\n\r")] = '\0';
 
 	printf("Enter book date:\n>>");
 	fgets(book.date, sizeof(book.date), stdin);
-	book.date[strcspn(book.name, "\n\r")] = '\0';
+	book.date[strcspn(book.date, "\n\r")] = '\0';
 
 	printf("Enter book price:\n>>");
 	fgets(book.price, sizeof(book.price), stdin);
-	book.price[strcspn(book.name, "\n\r")] = '\0';
+	book.price[strcspn(book.price, "\n\r")] = '\0';
 
 
 	cJSON *root = cJSON_CreateObject();
