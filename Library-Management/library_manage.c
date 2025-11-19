@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <cjson/cjson.h>
+#include <cjson/cJSON.h>
 
 
 #define SIZE 1024
@@ -25,14 +25,6 @@ void add()
 {
 	Book book;
 
-	FILE *addBook = fopen("bookData.json", "a");
-	
-	if (addBook == NULL)
-	{
-		addBook = fopen("bookData.json", "w");
-		return;
-	}
-
 	printf("Enter book name:\n>>");
 	fgets(book.name, sizeof(book.name), stdin);
 	book.name[strcspn(book.name, "\n\r")] = '\0';
@@ -49,11 +41,28 @@ void add()
 	fgets(book.price, sizeof(book.price), stdin);
 	book.price[strcspn(book.name, "\n\r")] = '\0';
 
-	fprintf(addBook, "{\n\"Name\": \"%s\", \n\"Author\": \"%s\", \n\"Date\": \"%s\", \n\"Price\": \"%s\" \n}\n", book.name, book.author, book.date, book.price);
+
+	cJSON *root = cJSON_CreateObject();
+	cJSON_AddStringToObject(root, "name", book.name);
+	cJSON_AddStringToObject(root, "author", book.author);
+	cJSON_AddStringToObject(root, "date", book.date);
+	cJSON_AddStringToObject(root, "price", book.price);
+
+	FILE *addBook = fopen("bookData.json", "a");
+	
+	if (addBook == NULL)
+	{
+		addBook = fopen("bookData.json", "w");
+		return;
+	}
+
+	char *str = cJSON_Print(root);
+	fprintf(addBook, "%s\n", str);
 
 	printf("Book successfully added\n");
 
 	fclose(addBook);
+	cJSON_Delete(root);
 }
 
 
