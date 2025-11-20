@@ -65,15 +65,57 @@ void add()
 }
 
 
+//linear search
 void searchBook()
 {
+	char search[SIZE];
 
+	printf("Search >> ");
+	fgets(search, sizeof(search), stdin);
+	search[strcspn(search, "\n\r")] = '\0';
+
+	FILE *list = fopen("bookData.json", "r");
+
+	if (list == NULL)
+	{
+		printf("No data yet\n");
+		return;
+	}
+
+	fseek(list, 0, SEEK_END);
+	long size = ftell(list);
+	fseek(list, 0, SEEK_SET);
+	
+	char *data = malloc(size);
+	fread(data, 1, size, list);
+	fclose(list);
+
+	cJSON *string = cJSON_Parse(data);
+	if (!string)
+	{
+		printf("Error parsing data\n");
+		free(data);
+		return;
+	}
+
+	cJSON *item;
+	cJSON_ArrayForEach(item, string)
+	{
+		char *value = cJSON_GetStringValue(item);
+		if (value && strstr(value, search))
+		{
+			printf("%s\n", value);
+		}
+	}
+
+	cJSON_Delete(string);
+	free(data);
 }
 
 
 void deleteBook()
 {
-	
+
 }
 
 
