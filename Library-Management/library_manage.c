@@ -65,7 +65,7 @@ void add()
 }
 
 
-//linear search
+//linear search (masih belum jadi)
 void searchBook()
 {
 	char search[SIZE];
@@ -84,10 +84,12 @@ void searchBook()
 
 	fseek(list, 0, SEEK_END);
 	long size = ftell(list);
+	
 	fseek(list, 0, SEEK_SET);
 	
 	char *data = malloc(size);
 	fread(data, 1, size, list);
+	data[size] = '\0';
 	fclose(list);
 
 	cJSON *string = cJSON_Parse(data);
@@ -98,14 +100,12 @@ void searchBook()
 		return;
 	}
 
-	cJSON *item;
-	cJSON_ArrayForEach(item, string)
+	cJSON *item = cJSON_GetObjectItem(string, search);
+	if (item != NULL)
 	{
-		char *value = cJSON_GetStringValue(item);
-		if (value && strstr(value, search))
-		{
-			printf("%s\n", value);
-		}
+		char *str = cJSON_Print(item);
+		printf("%s\n", str);
+		free(str);
 	}
 
 	cJSON_Delete(string);
