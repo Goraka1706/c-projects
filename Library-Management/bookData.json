@@ -1,18 +1,21 @@
 {
-	"name":	"book",
-	"author":	"author",
-	"date":	"20-11-2025",
-	"price":	"12000"
+	"name":	{
+		"author":	"author",
+		"date":	"17-06-2001",
+		"price":	"12000"
+	}
 }
 {
-	"name":	"Kamus",
-	"author":	"Siya",
-	"date":	"17-06-2001",
-	"price":	"15000"
+	"book":	{
+		"author":	"siya",
+		"date":	"20-11-2025",
+		"price":	"15000"
+	}
 }
 {
-	"name":	"helo",
-	"author":	"world",
-	"date":	"22-11-2025",
-	"price":	"12000"
+	"kamus":	{
+		"author":	"aku",
+		"date":	"22-11-2024",
+		"price":	"17000"
+	}
 }

@@ -24,6 +24,17 @@ void add()
 {
 	Book book;
 
+	FILE *addBook = fopen("bookData.json", "a");
+	
+	cJSON *root = cJSON_CreateObject();
+		
+	if (addBook == NULL)
+	{
+		addBook = fopen("bookData.json", "w");
+		return;
+	}
+
+
 	printf("Enter book name:\n>>");
 	fgets(book.name, sizeof(book.name), stdin);
 	book.name[strcspn(book.name, "\n\r")] = '\0';
@@ -41,25 +52,20 @@ void add()
 	book.price[strcspn(book.price, "\n\r")] = '\0';
 
 
-	cJSON *root = cJSON_CreateObject();
-	cJSON_AddStringToObject(root, "name", book.name);
-	cJSON_AddStringToObject(root, "author", book.author);
-	cJSON_AddStringToObject(root, "date", book.date);
-	cJSON_AddStringToObject(root, "price", book.price);
+	cJSON *newBook = cJSON_CreateObject();
 
-	FILE *addBook = fopen("bookData.json", "a");
+	cJSON_AddStringToObject(newBook, "author", book.author);
+	cJSON_AddStringToObject(newBook, "date", book.date);
+	cJSON_AddStringToObject(newBook, "price", book.price);
+
+	cJSON_AddItemToObject(root, book.name, newBook);
 	
-	if (addBook == NULL)
-	{
-		addBook = fopen("bookData.json", "w");
-		return;
-	}
-
 	char *str = cJSON_Print(root);
 	fprintf(addBook, "%s\n", str);
 
 	printf("Book successfully added\n");
 
+	free(str);
 	fclose(addBook);
 	cJSON_Delete(root);
 }
