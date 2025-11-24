@@ -24,98 +24,65 @@ void add()
 {
 	Book book;
 
-	FILE *addBook = fopen("bookData.json", "a");
-	
-	cJSON *root = cJSON_CreateObject();
-		
-	if (addBook == NULL)
-	{
-		addBook = fopen("bookData.json", "w");
-		return;
-	}
-
-
 	printf("Enter book name:\n>>");
 	fgets(book.name, sizeof(book.name), stdin);
 	book.name[strcspn(book.name, "\n\r")] = '\0';
 
-	printf("Enter book author:\n>>");
+	printf("Enter author name:\n>>");
 	fgets(book.author, sizeof(book.author), stdin);
 	book.author[strcspn(book.author, "\n\r")] = '\0';
 
-	printf("Enter book date:\n>>");
+	printf("Enter date:\n>>");
 	fgets(book.date, sizeof(book.date), stdin);
 	book.date[strcspn(book.date, "\n\r")] = '\0';
 
-	printf("Enter book price:\n>>");
+	printf("Enter price:\n>>");
 	fgets(book.price, sizeof(book.price), stdin);
 	book.price[strcspn(book.price, "\n\r")] = '\0';
 
+	FILE *addBook = fopen("bookData.csv", "a");
 
-	cJSON *newBook = cJSON_CreateObject();
+	if (addBook == NULL)
+	{
+		addBook = fopen("bookData.csv", "w");
+		return;
+	}
 
-	cJSON_AddStringToObject(newBook, "author", book.author);
-	cJSON_AddStringToObject(newBook, "date", book.date);
-	cJSON_AddStringToObject(newBook, "price", book.price);
-
-	cJSON_AddItemToObject(root, book.name, newBook);
-	
-	char *str = cJSON_Print(root);
-	fprintf(addBook, "%s\n", str);
-
+	fprintf(addBook, "%s, %s, %s, %s\n", book.name, book.author, book.date, book.price);
 	printf("Book successfully added\n");
-
-	free(str);
+	
 	fclose(addBook);
-	cJSON_Delete(root);
 }
 
 
-//linear search (masih belum jadi)
+//pakai linear search
 void searchBook()
 {
-	char search[SIZE];
+	char books[SIZE];
+	char keyword[SIZE];
 
-	printf("Search >> ");
-	fgets(search, sizeof(search), stdin);
-	search[strcspn(search, "\n\r")] = '\0';
+	printf("Search >> \n");
+	fgets(keyword, sizeof(keyword), stdin);
+	keyword[strcspn(keyword, "\n\r")] = '\0';
 
-	FILE *list = fopen("bookData.json", "r");
+	FILE *list = fopen("bookData.csv", "r");
 
-	if (list == NULL)
+	if (!list)
 	{
-		printf("No data yet\n");
+		printf("No book yet. Add some.\n");
 		return;
 	}
 
-	fseek(list, 0, SEEK_END);
-	long size = ftell(list);
-	
-	fseek(list, 0, SEEK_SET);
-	
-	char *data = malloc(size);
-	fread(data, 1, size, list);
-	data[size] = '\0';
+	while(fgets(books, sizeof(books), list))
+	{
+		if (strstr(books, keyword) != NULL)
+		{
+		  	printf("%s\n", books);
+		  	return;
+		}	    
+	}
+
 	fclose(list);
-
-	cJSON *string = cJSON_Parse(data);
-	if (!string)
-	{
-		printf("Error parsing data\n");
-		free(data);
-		return;
-	}
-
-	cJSON *item = cJSON_GetObjectItem(string, search);
-	if (item != NULL)
-	{
-		char *str = cJSON_Print(item);
-		printf("%s\n", str);
-		free(str);
-	}
-
-	cJSON_Delete(string);
-	free(data);
 }
 
 
