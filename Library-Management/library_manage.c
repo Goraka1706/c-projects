@@ -41,7 +41,7 @@ void add()
 
 	FILE *addBook = fopen("bookData.csv", "a");
 
-	if (addBook == NULL)
+	if (!addBook)
 	{
 		addBook = fopen("bookData.csv", "w");
 		return;
