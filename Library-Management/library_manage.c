@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <cjson/cJSON.h>
 
 #define SIZE 1024
 
@@ -55,13 +54,13 @@ void add()
 }
 
 
-//pakai linear search
+//using linear search
 void searchBook()
 {
 	char books[SIZE];
 	char keyword[SIZE];
 
-	printf("Search >> \n");
+	printf("Search\n>>");
 	fgets(keyword, sizeof(keyword), stdin);
 	keyword[strcspn(keyword, "\n\r")] = '\0';
 
@@ -78,9 +77,15 @@ void searchBook()
 		if (strstr(books, keyword) != NULL)
 		{
 		  	printf("%s\n", books);
-		  	return;
-		}	    
+		 	return; 	
+		}
 	}
+
+	if (strstr(books, keyword) == NULL)
+	{
+		printf("no such file in database\n");
+		return;
+	} //i don't put this statement in while loop, 'cause it will broke the linear function
 
 	fclose(list);
 }
@@ -88,7 +93,34 @@ void searchBook()
 
 void deleteBook()
 {
+	char del[SIZE];
+	char key[SIZE];
 
+	printf("Enter the book name to delete\n>>");
+	fgets(key, sizeof(key), stdin);
+	key[strcspn(key, "\n\r")] = '\0';
+
+	FILE *bookData = fopen("bookData.csv", "r");
+	FILE *temp = fopen("temp.csv", "w");
+	
+	if (!bookData || !temp)
+	{
+		printf("No data yet.\n");
+		return;
+	}
+
+	while(fgets(del, sizeof(del), bookData)) {
+	    if (strstr(del, key) == NULL)
+	    {
+	    	fputs(del, temp);
+	    	del[strcspn(del, "\n\r")] = '\0';
+	    }
+	}
+
+	fclose(bookData);
+	fclose(temp);
+	rename("temp.csv", "bookData.csv");
+	printf("file deleted\n");
 }
 
 
