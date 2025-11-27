@@ -85,7 +85,7 @@ void searchBook()
 	{
 		printf("no such file in database\n");
 		return;
-	} //i don't put this statement in while loop, 'cause it will broke the linear function
+	} //don't put this statement in while loop, it will broke the linear function
 
 	fclose(list);
 }
