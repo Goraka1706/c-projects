@@ -109,7 +109,8 @@ void deleteBook()
 		return;
 	}
 
-	while(fgets(del, sizeof(del), bookData)) {
+	while(fgets(del, sizeof(del), bookData)) 
+	{
 	    if (strstr(del, key) == NULL)
 	    {
 	    	fputs(del, temp);
